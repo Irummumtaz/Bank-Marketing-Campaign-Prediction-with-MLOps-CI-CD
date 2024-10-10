@@ -1,0 +1,70 @@
+columns:
+  - job: category
+  - marital: category
+  - education: category
+  - default: category
+  - housing: category
+  - loan: category
+  - y : category
+  - contact: category
+  - month: category
+  - day_of_week: category
+  - poutcome: category
+  - age: int
+  - duration: int
+  - campaign: int
+  - pdays: int
+  - previous: int
+  - emp.var.rate: int
+  - cons.price.idx: int
+  - cons.conf.idx: int
+  - euribor3m: int
+  - nr.employed: int
+
+numerical_columns:
+  - age
+  - duration
+  - campaign
+  - pdays
+  - previous
+  - emp.var.rate
+  - cons.price.idx
+  - cons.conf.idx
+  - euribor3m
+  - nr.employed
+
+categorical_columns:
+  - job 
+  - marital
+  - education 
+  - default 
+  - housing 
+  - loan 
+  - contact 
+  - month 
+  - day_of_week 
+  - poutcome 
+  - y 
+
+
+
+or_columns:
+  - contact
+  - loan
+  - housing
+ 
+
+oh_columns:
+  - job 
+  - marital
+  - education
+  - default
+  - month
+  - day_of_week
+  - poutcome
+
+
+
+transform_columns:
+  - duration
+  - age

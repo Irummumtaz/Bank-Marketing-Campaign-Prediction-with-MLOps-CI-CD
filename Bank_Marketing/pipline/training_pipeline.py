@@ -6,8 +6,16 @@ from Bank_Marketing.entity.config_entity import DataIngestionConfig
 
 from Bank_Marketing.entity.artifact_entity import DataIngestionArtifact 
 from Bank_Marketing.components.data_validation import DataValidation
-from Bank_Marketing.entity.config_entity import (DataIngestionConfig,DataValidationConfig)
-from Bank_Marketing.entity.artifact_entity import (DataIngestionArtifact, DataValidationArtifact)
+from Bank_Marketing.components.data_transformation import DataTransformation
+from Bank_Marketing.components.model_trainer import ModelTrainer
+from Bank_Marketing.entity.config_entity import (DataIngestionConfig,
+                                                 DataValidationConfig,
+                                                 DataTransformationConfig,
+                                                 ModelTrainerConfig)
+from Bank_Marketing.entity.artifact_entity import (DataIngestionArtifact,
+                                                    DataValidationArtifact,
+                                                    DataTransformationArtifact,
+                                                    ModelTrainerArtifact)
 
 
 class TrainPipeline:
@@ -15,7 +23,8 @@ class TrainPipeline:
     def __init__(self):
         self.data_ingestion_config = DataIngestionConfig()
         self.data_validation_config = DataValidationConfig()
-      
+        self.data_transformation_config=DataTransformationConfig()
+        self.model_trainer_config = ModelTrainerConfig()
     def start_data_ingestion(self) -> DataIngestionArtifact:
         """
         This method of TrainPipeline class is responsible for starting data ingestion component
@@ -56,6 +65,35 @@ class TrainPipeline:
 
         except Exception as e:
             raise BankMarketingException(e, sys) from e  
+        
+    def start_data_transformation(self, data_ingestion_artifact: DataIngestionArtifact, data_validation_artifact: DataValidationArtifact) -> DataTransformationArtifact:
+        """
+        This method of TrainPipeline class is responsible for starting data transformation component
+        """
+        try:
+            data_transformation = DataTransformation(data_ingestion_artifact=data_ingestion_artifact,
+                                                     data_transformation_config=self.data_transformation_config,
+                                                     data_validation_artifact=data_validation_artifact)
+            data_transformation_artifact = data_transformation.initiate_data_transformation()
+            return data_transformation_artifact
+        except Exception as e:
+            raise BankMarketingException(e, sys)
+        
+    def start_model_trainer(self, data_transformation_artifact: DataTransformationArtifact) -> ModelTrainerArtifact:
+        """
+        This method of TrainPipeline class is responsible for starting model training
+        """
+        try:
+            model_trainer = ModelTrainer(data_transformation_artifact=data_transformation_artifact,
+                                         model_trainer_config=self.model_trainer_config
+                                         )
+            model_trainer_artifact = model_trainer.initiate_model_trainer()
+            return model_trainer_artifact
+
+        except Exception as e:
+            raise BankMarketingException(e, sys)
+
+
     def run_pipeline(self, ) -> None:
         """
         This method of TrainPipeline class is responsible for running complete pipeline
@@ -63,6 +101,11 @@ class TrainPipeline:
         try:
             data_ingestion_artifact = self.start_data_ingestion()
             data_validation_artifact = self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
+            data_transformation_artifact = self.start_data_transformation(
+                data_ingestion_artifact=data_ingestion_artifact, data_validation_artifact=data_validation_artifact)
+            model_trainer_artifact = self.start_model_trainer(data_transformation_artifact=data_transformation_artifact)
 
         except Exception as e:
             raise BankMarketingException(e, sys)
+        
+    

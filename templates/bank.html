@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <title>Deposit Subscription Prediction Form</title>
+    <style>
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-control:focus {
+        box-shadow: none;
+      }
+      .focus {
+        border-color: #66afe9;
+      }
+      h2 {
+        color: #5a5a5a;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      body {
+        background-color: #f5f5f5;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light static-top">
+      <div class="container-fluid">
+        <h4 class="navbar-brand mb-0">Deposit Subscription Predictor</h4>
+      </div>
+    </nav>
+
+    <section class="container mt-4">
+      <h2 class="mb-4">Fill in the Details to Predict Subscription</h2>
+
+      <form>
+        <!-- Categorical Fields -->
+        <div class="form-group">
+          <label for="job">Job:</label>
+          <select class="form-control input" id="job">
+            <option value="" disabled selected>Select Job</option>
+            <option value="admin">Admin</option>
+            <option value="blue-collar">Blue-collar</option>
+            <option value="entrepreneur">Entrepreneur</option>
+            <option value="management">Management</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="marital">Marital Status:</label>
+          <select class="form-control input" id="marital">
+            <option value="" disabled selected>Select Marital Status</option>
+            <option value="single">Single</option>
+            <option value="married">Married</option>
+            <option value="divorced">Divorced</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="education">Education:</label>
+          <select class="form-control input" id="education">
+            <option value="" disabled selected>Select Education Level</option>
+            <option value="primary">Primary</option>
+            <option value="secondary">Secondary</option>
+            <option value="tertiary">Tertiary</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="contact">Contact Method:</label>
+          <select class="form-control input" id="contact">
+            <option value="" disabled selected>Select Contact Method</option>
+            <option value="cellular">Cellular</option>
+            <option value="telephone">Telephone</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="default">Has Credit in Default:</label>
+          <select class="form-control input" id="default">
+            <option value="" disabled selected>Select Default Status</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+
+        <!-- Numerical Fields -->
+        <div class="form-group">
+          <label for="age">Age:</label>
+          <input
+            type="number"
+            class="form-control input"
+            id="age"
+            placeholder="Enter Age"
+            value="35"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="balance">Balance:</label>
+          <input
+            type="number"
+            class="form-control input"
+            id="balance"
+            placeholder="Enter Balance"
+            value="500"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="duration">Last Contact Duration (seconds):</label>
+          <input
+            type="number"
+            class="form-control input"
+            id="duration"
+            placeholder="Enter Duration"
+            value="120"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="campaign">Number of Contacts During Campaign:</label>
+          <input
+            type="number"
+            class="form-control input"
+            id="campaign"
+            placeholder="Enter Campaign Contacts"
+            value="3"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="previous">Number of Contacts Before Campaign:</label>
+          <input
+            type="number"
+            class="form-control input"
+            id="previous"
+            placeholder="Enter Previous Contacts"
+            value="2"
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary btn-block">
+          Predict Deposit Subscription
+        </button>
+      </form>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+      $(".input")
+        .focus(function () {
+          $(this).parent().addClass("focus");
+        })
+        .blur(function () {
+          if ($(this).val() === "") {
+            $(this).parent().removeClass("focus");
+          }
+        });
+    </script>
+  </body>
+</html>

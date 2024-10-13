@@ -1,0 +1,132 @@
+/* Navbar Styles */
+.navbar-light .navbar-brand {
+    color: rgba(0, 0, 0, .9);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Body and Basic Layout */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #f5f5f5; /* Neutral background for readability */
+}
+
+/* Form Container */
+.formBox {
+    margin-top: 50px;
+    padding: 50px;
+    background-color: #ffffff; /* Form background */
+    border-radius: 10px; /* Soft rounded edges */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for emphasis */
+}
+
+/* Heading Styles */
+h1 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    margin-bottom: 50px !important;
+    text-transform: uppercase;
+    font-size: 36px; /* Reduced size for more elegant display */
+    color: #333; /* Softer text color for readability */
+}
+
+/* Input Field Styles */
+.inputBox {
+    position: relative;
+    box-sizing: border-box;
+    margin-bottom: 40px;
+}
+
+.input {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 20px; /* Slightly reduced font for inputs */
+    border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+    transition: border-color 0.3s ease; /* Smooth transition */
+}
+
+.input:focus {
+    border-bottom: 2px solid #00bcd4; /* Consistent focus color */
+}
+
+.inputText {
+    position: absolute;
+    line-height: 50px;
+    font-size: 20px;
+    transition: 0.5s;
+    opacity: 0.5;
+    color: #999; /* Softer placeholder color */
+}
+
+.focus .inputText {
+    transform: translateY(-30px);
+    font-size: 18px;
+    opacity: 1;
+    color: #00bcd4;
+}
+
+/* Button Styles */
+.button, .btn_train {
+    width: 100%;
+    color: #fff;
+    border-radius: 0;
+    border: none;
+    outline: none;
+    height: 50px;
+    font-size: 24px;
+    transition: background-color 0.3s ease;
+}
+
+/* Primary Button for "Deposit Subscription Prediction" */
+.button {
+    background-color: #00bcd4; /* Primary theme color */
+}
+
+.button:hover {
+    background-color: #0097a7; /* Darker on hover */
+}
+
+/* Secondary Button for "Train the Model" */
+.btn_train {
+    background-color: red;
+}
+
+.btn_train:hover {
+    background-color: darkred; /* Darker red on hover */
+}
+
+/* Styling Checkbox and Select Elements */
+.form-check-label, select {
+    font-size: 18px; /* Uniform font size for labels and dropdown */
+    color: #333; /* Same color as other text */
+}
+
+select {
+    padding: 5px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Submit Button Styling */
+button[type="submit"] {
+    width: 100%;
+    background-color: #00bcd4;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0097a7;
+}

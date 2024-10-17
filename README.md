@@ -52,3 +52,34 @@ AWS-CICD-Deployment-with-Github-Actions
 
 2. AmazonEC2FullAccess
 
+
+#. Create ECR repo to store/save docker image
+- Save the URI: 976193222212.dkr.ecr.us-east-1.amazonaws.com/bank
+
+#Create EC2 machine (Ubuntu)
+#Open EC2 and Install docker in EC2 Machine:
+#optinal
+
+sudo apt-get update -y
+
+sudo apt-get upgrade
+
+#required
+
+curl -fsSL https://get.docker.com -o get-docker.sh
+
+sudo sh get-docker.sh
+
+sudo usermod -aG docker ubuntu
+
+newgrp docker
+
+#Configure EC2 as self-hosted runner:
+setting>actions>runner>new self hosted runner> choose os> then run command one by one
+
+#. Setup github secrets:
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+AWS_DEFAULT_REGION
+ECR_REPO
+

@@ -57,8 +57,12 @@ class DataTransformation:
             logging.info("Got numerical cols from schema config")
 
             numeric_transformer = StandardScaler()
-            oh_transformer = OneHotEncoder()
-            ordinal_encoder = OrdinalEncoder()
+            # Set `handle_unknown='ignore'` to avoid errors on unknown categories
+            oh_transformer = OneHotEncoder(handle_unknown='ignore')
+            ordinal_encoder = OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=-1)
+
+            logging.info("Initialized StandardScaler, OneHotEncoder (handle_unknown='ignore'), OrdinalEncoder")
+
 
             logging.info("Initialized StandardScaler, OneHotEncoder, OrdinalEncoder")
 
@@ -108,6 +112,11 @@ class DataTransformation:
 
                 train_df = DataTransformation.read_data(file_path=self.data_ingestion_artifact.trained_file_path)
                 test_df = DataTransformation.read_data(file_path=self.data_ingestion_artifact.test_file_path)
+                
+                  # Preprocess column names
+                train_df.columns = train_df.columns.str.replace(' ', '_').str.replace('-', '_').str.lower()
+                test_df.columns = test_df.columns.str.replace(' ', '_').str.replace('-', '_').str.lower()
+
 
                 input_feature_train_df = train_df.drop(columns=[TARGET_COLUMN], axis=1)
                 target_feature_train_df = train_df[TARGET_COLUMN]
@@ -130,6 +139,25 @@ class DataTransformation:
 
                 logging.info("Got train features and test features of Testing dataset")
 
+
+            # Load "unknown_columns" from the schema
+                unknown_columns = self._schema_config.get('unknown_columns', [])
+
+                if unknown_columns:
+                                    # Find indices of rows to drop based on 'unknown' in categorical columns
+                    train_rows_to_drop = input_feature_train_df[unknown_columns].apply(lambda x: x.str.contains('unknown')).any(axis=1)
+                    test_rows_to_drop = input_feature_test_df[unknown_columns].apply(lambda x: x.str.contains('unknown')).any(axis=1)
+
+                    # Drop rows in both train and test DataFrames
+                    input_feature_train_df = input_feature_train_df[~train_rows_to_drop].reset_index(drop=True)
+                    target_feature_train_df = target_feature_train_df[~train_rows_to_drop].reset_index(drop=True)
+
+                    input_feature_test_df = input_feature_test_df[~test_rows_to_drop].reset_index(drop=True)
+                    target_feature_test_df = target_feature_test_df[~test_rows_to_drop].reset_index(drop=True)
+
+                logging.info("Dropped rows with 'unknown' categories in categorical columns")
+
+
                 logging.info(
                     "Applying preprocessing object on training dataframe and testing dataframe"
                 )
@@ -143,7 +171,16 @@ class DataTransformation:
                 input_feature_test_arr = preprocessor.transform(input_feature_test_df)
 
                 logging.info("Used the preprocessor object to transform the test features")
+                
 
+                # Handle missing values or invalid categories (-1 from ordinal encoder)
+                # Convert transformed arrays back to DataFrame to drop rows if needed
+                input_feature_train_arr = pd.DataFrame(input_feature_train_arr).replace(-1, np.nan).dropna()
+                input_feature_test_arr = pd.DataFrame(input_feature_test_arr).replace(-1, np.nan).dropna()
+
+                logging.info("Dropped rows with unknown categories in transformed datasets")
+
+            
                 logging.info("Applying SMOTEENN on Training dataset")
 
                 smt = SMOTEENN(sampling_strategy="minority")

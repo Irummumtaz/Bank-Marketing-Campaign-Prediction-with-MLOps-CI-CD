@@ -71,11 +71,11 @@ class DataForm:
         self.campaign = form.get("campaign")
         self.pdays = form.get("pdays")
         self.previous = form.get("previous")
-        self.emp_var_rate = form.get("emp.var.rate")  # Adjusted for mapping
-        self.cons_price_idx = form.get("cons.price.idx")  # Adjusted for mapping
-        self.cons_conf_idx = form.get("cons.conf.idx")  # Adjusted for mapping
+        self.emp_var_rate = form.get("emp_var_rate")  # Adjusted for mapping
+        self.cons_price_idx = form.get("cons_price_idx")  # Adjusted for mapping
+        self.cons_conf_idx = form.get("cons_conf_idx")  # Adjusted for mapping
         self.euribor3m = form.get("euribor3m")
-        self.nr_employed = form.get("nr.employed")  # Adjusted for mapping
+        self.nr_employed = form.get("nr_employed")  # Adjusted for mapping
         self.contact = form.get("contact")
 
 @app.get("/", tags=["authentication"])
@@ -103,7 +103,8 @@ async def predictRouteClient(request: Request):
     try:
         form = DataForm(request)
         await form.get_bank_data()
-        
+        # Debugging outputs
+        print(f"Retrieved form data: {form.__dict__}")
         bank_data = BankmarketingData(
                                 job=form.job,
                                 education=form.education,
@@ -134,6 +135,8 @@ async def predictRouteClient(request: Request):
 
         value = model_predictor.predict(dataframe=bank_df)[0]
 
+        print(f"Prediction Value: {value}")
+
         status = None
         if value == 1:
             status = "Term Deposit Subscribed:"
@@ -146,7 +149,11 @@ async def predictRouteClient(request: Request):
         )
         
     except Exception as e:
-        return {"status": False, "error": f"{e}"}
+        return templates.TemplateResponse(
+            "bank.html",
+            {"request": request, "context": f"Error: {str(e)}"},
+        )
+        #return {"status": False, "error": f"{e}"}
 
 
 if __name__ == "__main__":

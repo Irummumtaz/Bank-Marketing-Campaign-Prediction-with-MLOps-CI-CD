@@ -7,7 +7,7 @@ from pandas import DataFrame
 
 class BankmarketingEstimator:
     """
-    This class is used to save and retrieve us_visas model in s3 bucket and to do prediction
+    This class is used to save and retrieve bank model in s3 bucket and to do prediction
     """
 
     def __init__(self,bucket_name,model_path,):

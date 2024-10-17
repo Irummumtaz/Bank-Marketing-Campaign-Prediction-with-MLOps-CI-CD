@@ -79,3 +79,11 @@ oh_columns:
 transform_columns:
   - duration
   - age
+
+unknown_columns:
+  - default
+  - job
+  - marital
+  - education
+  - housing
+  - loan

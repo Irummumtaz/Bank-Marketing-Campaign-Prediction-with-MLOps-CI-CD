@@ -65,12 +65,12 @@ class BankmarketingData:
 
     def get_bank_input_data_frame(self)-> DataFrame:
         """
-        This function returns a DataFrame from USvisaData class input
+        This function returns a DataFrame from Bankdata class input
         """
         try:
             
-            usvisa_input_dict = self.get_bank_data_as_dict()
-            return DataFrame(usvisa_input_dict)
+            bank_input_dict = self.get_bank_data_as_dict()
+            return DataFrame(bank_input_dict)
         
         except Exception as e:
             raise BankMarketingException(e, sys) from e
@@ -98,11 +98,11 @@ class BankmarketingData:
                 "campaign": [self.campaign],
                 "pdays": [self.pdays],
                 "previous": [self.previous],
-                "emp.var.rate": [self.emp.var.rate],
-                "cons.price.idx": [self.cons.price.idx],
-                "cons.conf.idx": [self.cons.conf.idx],
+                "emp.var.rate": [self.emp_var_rate],
+                "cons.price.idx": [self.cons_price_idx],
+                "cons.conf.idx": [self.cons_conf_idx],
                 "euribor3m": [self.euribor3m],
-                "nr.employed": [self.nr.employed],
+                "nr.employed": [self.nr_employed],
                 "contact": [self.contact],
             }
 

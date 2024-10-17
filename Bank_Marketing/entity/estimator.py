@@ -26,6 +26,8 @@ class BankmarketingModel:
         """
         self.preprocessing_object = preprocessing_object
         self.trained_model_object = trained_model_object
+       
+
 
     def predict(self, dataframe: DataFrame) -> DataFrame:
         """
@@ -36,9 +38,12 @@ class BankmarketingModel:
         logging.info("Entered predict method of UTruckModel class")
 
         try:
-            logging.info("Using the trained model to get predictions")
+            
 
             transformed_feature = self.preprocessing_object.transform(dataframe)
+            logging.info("Using the trained model to get predictions")
+
+            logging.info(f"Transformed data shape: {transformed_feature.shape}")
 
             logging.info("Used the trained model to get predictions")
             return self.trained_model_object.predict(transformed_feature)

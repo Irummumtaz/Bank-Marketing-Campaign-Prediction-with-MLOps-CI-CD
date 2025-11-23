@@ -38,8 +38,7 @@ export AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY>
 
 
 
-
-☁️ AWS Deployment Steps
+#☁️ AWS Deployment Steps
 
 Build Docker image of the project
 
@@ -57,7 +56,7 @@ AmazonEC2FullAccess
 
 AmazonEC2ContainerRegistryFullAccess
 
-🛠 Skills Applied
+# 🛠 Skills Applied
 
 Programming & Data: Python, MongoDB, SQL
 
@@ -67,7 +66,7 @@ MLOps & Deployment: Docker, CI/CD, GitHub Actions, AWS EC2 & ECR
 
 Business Analytics: Marketing campaign analysis, customer response prediction
 
-🚀 How It Works
+# 🚀 How It Works
 
 Data is fetched from MongoDB
 
@@ -79,7 +78,7 @@ Dockerized deployment on AWS EC2
 
 Automated CI/CD with GitHub Actions
 
-📈 Outcome
+# 📈 Outcome
 
 Accurate prediction of customer responses
 

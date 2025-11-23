@@ -1,85 +1,87 @@
 # Bank-Marketing-Campaign-Prediction-with-MLOps-CI-CD
 
-#conda create -n bank python=3.8 -y
-#conda activate bank
-#pip install -r requirements.txt
+# Bank Marketing Campaign Prediction with MLOps & CI/CD 🚀
 
-Workflow:
+Predict customer responses to bank marketing campaigns using machine learning with **end-to-end MLOps** and **CI/CD deployment** on AWS. Automates model training, testing, and deployment in a scalable, containerized environment.
 
-1. constants
-2. entity
-3. components
-4. pipeline
-5. Main file
+---
 
-Export the environment variable
+## 🌟 Project Highlights
+- Predictive modeling for bank marketing campaigns  
+- CI/CD automation with **GitHub Actions**  
+- **Dockerized** application deployment  
+- Scalable deployment on **AWS EC2** with **ECR**  
+- End-to-end **ML pipeline automation**  
 
+---
 
-export MONGODB_URL="mongodb+srv://<username>:<password>...."
+## 📂 Project Structure
+- `constants/` → Configuration constants  
+- `entity/` → Data and model entities  
+- `components/` → Core processing & model modules  
+- `pipeline/` → Complete ML workflow  
+- `main.py` → Entry point  
 
+---
+
+## ⚙️ Setup & Installation
+```bash
+# Create environment
+conda create -n bank python=3.8 -y
+conda activate bank
+pip install -r requirements.txt
+
+# Export environment variables
+export MONGODB_URL="mongodb+srv://<username>:<password>@cluster0.mongodb.net/<dbname>"
 export AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID>
-
-
-
 export AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY>
 
 
-AWS-CICD-Deployment-with-Github-Actions
-1. Login to AWS console
-2. Create IAM user for deployment
-#with specific access
+☁️ AWS Deployment Steps
 
-1. EC2 access : It is virtual machine
+Build Docker image of the project
 
-2. ECR: Elastic Container registry to save your docker image in aws
+Push Docker image to AWS ECR
 
+Launch EC2 instance and install Docker
 
-#Description: About the deployment
+Pull Docker image from ECR and run container
 
-1. Build docker image of the source code
+Optional: Set up self-hosted GitHub Actions runner
 
-2. Push your docker image to ECR
+IAM Policies Needed:
 
-3. Launch Your EC2 
+AmazonEC2FullAccess
 
-4. Pull Your image from ECR in EC2
+AmazonEC2ContainerRegistryFullAccess
 
-5. Lauch your docker image in EC2
+🛠 Skills Applied
 
-#Policy:
+Programming & Data: Python, MongoDB, SQL
 
-1. AmazonEC2ContainerRegistryFullAccess
+Machine Learning: Predictive modeling, ML pipelines
 
-2. AmazonEC2FullAccess
+MLOps & Deployment: Docker, CI/CD, GitHub Actions, AWS EC2 & ECR
 
+Business Analytics: Marketing campaign analysis, customer response prediction
 
-#. Create ECR repo to store/save docker image
-- Save the URI: 976193222212.dkr.ecr.us-east-1.amazonaws.com/bank
+🚀 How It Works
 
-#Create EC2 machine (Ubuntu)
-#Open EC2 and Install docker in EC2 Machine:
-#optinal
+Data is fetched from MongoDB
 
-sudo apt-get update -y
+Preprocessing & feature engineering
 
-sudo apt-get upgrade
+Model training and evaluation
 
-#required
+Dockerized deployment on AWS EC2
 
-curl -fsSL https://get.docker.com -o get-docker.sh
+Automated CI/CD with GitHub Actions
 
-sudo sh get-docker.sh
+📈 Outcome
 
-sudo usermod -aG docker ubuntu
+Accurate prediction of customer responses
 
-newgrp docker
+Fully automated ML workflow and deployment
 
-#Configure EC2 as self-hosted runner:
-setting>actions>runner>new self hosted runner> choose os> then run command one by one
-
-#. Setup github secrets:
-AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY
-AWS_DEFAULT_REGION
-ECR_REPO
+Scalable solution for future campaigns
 

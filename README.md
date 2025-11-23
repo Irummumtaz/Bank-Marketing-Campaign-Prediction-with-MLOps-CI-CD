@@ -4,12 +4,32 @@ Predict customer responses to bank marketing campaigns using machine learning wi
 
 ---
 
-## 🌟 Project Highlights
-- Predictive modeling for bank marketing campaigns  
-- CI/CD automation with **GitHub Actions**  
-- **Dockerized** application deployment  
-- Scalable deployment on **AWS EC2** with **ECR**  
-- End-to-end **ML pipeline automation**  
+**Key Features:**
+- Developed ML models for customer response prediction.
+- Created reusable pipeline with modular components: constants, entities, pipeline, and main file.
+- Implemented running environment using Conda and dependency management via `requirements.txt`.
+- Deployed models using Docker containers on AWS EC2.
+- Stored Docker images in AWS ECR for versioning and management.
+- Configured CI/CD pipeline with GitHub Actions for automated deployment.
+- Setup self-hosted GitHub runner on EC2 for deployment tasks.
+
+  **Technologies & Skills:**
+- **Programming:** Python 3.8
+- **Machine Learning:** Model development, data preprocessing, pipeline creation
+- **MLOps & CI/CD:** Docker, GitHub Actions, pipeline automation
+- **Cloud & DevOps:** AWS EC2, AWS ECR, IAM, environment variable configuration
+- **Version Control:** GitHub
+- **Environment Management:** Conda, pip
+- **Other Tools:** MongoDB for data storage
+
+  **Workflow Overview:**
+1. Setup project environment using Conda and `requirements.txt`.
+2. Implement ML pipeline with modular components.
+3. Build Docker image of the project source code.
+4. Push Docker image to AWS ECR.
+5. Launch EC2 instance and pull Docker image.
+6. Run project container on EC2 with environment variables configured.
+7. Automated deployment via GitHub Actions.
 
 ---
 

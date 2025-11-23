@@ -1,5 +1,3 @@
-# Bank-Marketing-Campaign-Prediction-with-MLOps-CI-CD
-
 # Bank Marketing Campaign Prediction with MLOps & CI/CD 🚀
 
 Predict customer responses to bank marketing campaigns using machine learning with **end-to-end MLOps** and **CI/CD deployment** on AWS. Automates model training, testing, and deployment in a scalable, containerized environment.
@@ -35,6 +33,10 @@ pip install -r requirements.txt
 export MONGODB_URL="mongodb+srv://<username>:<password>@cluster0.mongodb.net/<dbname>"
 export AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID>
 export AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY>
+
+---
+
+
 
 
 ☁️ AWS Deployment Steps

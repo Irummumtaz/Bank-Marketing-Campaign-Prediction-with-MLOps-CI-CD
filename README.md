@@ -4,7 +4,7 @@ Predict customer responses to bank marketing campaigns using machine learning wi
 
 ---
 
-**Key Features:**
+##**Key Features:**
 - Developed ML models for customer response prediction.
 - Created reusable pipeline with modular components: constants, entities, pipeline, and main file.
 - Implemented running environment using Conda and dependency management via `requirements.txt`.
@@ -13,7 +13,11 @@ Predict customer responses to bank marketing campaigns using machine learning wi
 - Configured CI/CD pipeline with GitHub Actions for automated deployment.
 - Setup self-hosted GitHub runner on EC2 for deployment tasks.
 
-  **Technologies & Skills:**
+
+---
+
+
+  ##**Technologies & Skills:**
 - **Programming:** Python 3.8
 - **Machine Learning:** Model development, data preprocessing, pipeline creation
 - **MLOps & CI/CD:** Docker, GitHub Actions, pipeline automation
@@ -22,7 +26,11 @@ Predict customer responses to bank marketing campaigns using machine learning wi
 - **Environment Management:** Conda, pip
 - **Other Tools:** MongoDB for data storage
 
-  **Workflow Overview:**
+
+---
+
+
+ ## **Workflow Overview:**
 1. Setup project environment using Conda and `requirements.txt`.
 2. Implement ML pipeline with modular components.
 3. Build Docker image of the project source code.
